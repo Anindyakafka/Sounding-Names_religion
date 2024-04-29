@@ -1,8 +1,0 @@
-tensorflow
-keras
-h5py
-numpy
-pandas
-scikit-learn
-nltk
-unidecode
