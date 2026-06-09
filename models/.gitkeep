@@ -1,0 +1,30 @@
+# This directory holds pre-trained model files.
+# All files below are included in this repository.
+#
+# === Religion models (religion.ipynb / run_py38.py) ===
+#
+# Binary classification (2class):
+#   vectorizer_2class_svm_concat_False.sav   — TF-IDF vectorizer (single name)
+#   model_2class_svm_concat_False.sav        — SVM classifier (single name)
+#   vectorizer_2class_svm_concat_True.sav    — TF-IDF vectorizer (concatenated names)
+#   model_2class_svm_concat_True.sav         — SVM classifier (concatenated names)
+#
+# Multiclass classification:
+#   vectorizer_multiclass_svm_concat_False.sav
+#   model_multiclass_svm_concat_False.sav
+#   vectorizer_multiclass_svm_concat_True.sav
+#   model_multiclass_svm_concat_True.sav
+#   non_neural_label_encoding_multiclass.pkl — label encoder for multiclass mode
+#
+# Tokenizers (religion, character-level):
+#   tokenizer_binary_False.pkl
+#   tokenizer_binary_True.pkl
+#   tokenizer_multiclass_False.pkl
+#   tokenizer_multiclass_True.pkl
+#
+# === Race/ethnicity models (race.ipynb) ===
+#
+#   cnn_USA_text.h5          — CNN text-only model
+#   cnn_USA_meta.h5          — CNN with GIS/demographic priors
+#   nc_voter_encoding.pkl    — Label encoder
+#   nc_voter_tokenizer.pkl   — Character-level tokenizer
