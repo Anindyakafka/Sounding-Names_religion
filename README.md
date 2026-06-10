@@ -4,6 +4,10 @@ A machine learning toolkit that predicts **religion** (Muslim vs. non-Muslim) an
 
 > ⚠️ **Ethical Notice:** This project is intended for academic research and audit purposes (e.g., studying bias in datasets). Predicting protected attributes from names carries significant ethical risks. Use responsibly and be aware of the limitations and potential harms of such inference.
 
+## Credits
+
+Based on the original codebase by **Sugat Chaturvedi**. The initial models, data preprocessing pipeline, and prediction logic were developed as part of their research on name-based demographic inference. This fork adds universal environment detection, Python 3.8 compatibility tooling, improved error handling, and comprehensive documentation while preserving the original model architecture and weights.
+
 ---
 
 ## Table of Contents
@@ -20,6 +24,7 @@ A machine learning toolkit that predicts **religion** (Muslim vs. non-Muslim) an
 - [Model Files Reference](#model-files-reference)
 - [Python Version Compatibility](#python-version-compatibility)
 - [Dependencies](#dependencies)
+- [Usage Guide](#usage-guide)
 - [License](#license)
 
 ---
@@ -242,12 +247,12 @@ All model files are included in the `models/` directory. The naming convention e
 
 | Component | Python 3.8–3.10 | Python 3.11+ |
 |-----------|-----------------|--------------|
-| Religion (`religion.ipynb`) | ✅ Full support | ✅ Works (no TF dependency) |
-| Religion (`run_py38.py`) | ✅ Full support | ⚠️ May need older scikit-learn |
+| Religion (`religion.ipynb`) | ✅ Full support | ❌ sklearn version mismatch |
+| Religion (`run_py38.py`) | ✅ Full support | ❌ sklearn version mismatch |
 | Race (`race.ipynb`) | ✅ Full support | ❌ TF 2.8 incompatible |
 | Race (TF 2.16+) | — | ✅ Upgrade `requirements.txt` |
 
-> **Note:** TensorFlow 2.8.0 requires Python ≤ 3.10. The `religion_py38.ipynb` notebook installs Python 3.8 inside Colab to guarantee compatibility. For local use with Python 3.11+, consider upgrading to TensorFlow 2.16+ and adjusting `requirements.txt`.
+> **Note:** Models were trained with scikit-learn 0.22.2 and TensorFlow 2.8.0. Both require Python ≤ 3.10 for correct inference. The `religion_py38.ipynb` notebook installs Python 3.8 inside Colab to guarantee compatibility. For local use with Python 3.11+, consider retraining models or upgrading to TF 2.16+ / sklearn 1.6+.
 
 ---
 
@@ -263,6 +268,12 @@ All model files are included in the `models/` directory. The naming convention e
 | Unidecode      | latest   | Unicode-to-ASCII transliteration     |
 | nltk           | 3.7      | Text processing utilities            |
 | h5py           | 2.10.0   | HDF5 model file support              |
+
+---
+
+## Usage Guide
+
+For a detailed step-by-step walkthrough covering environment setup, using your own data, interpreting outputs, troubleshooting, and ethical considerations, see **[USAGE_GUIDE.md](USAGE_GUIDE.md)**.
 
 ---
 

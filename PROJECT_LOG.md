@@ -74,3 +74,23 @@ Chronological record of decisions, changes, and rationale for the Sounding Names
 - **`models/.gitkeep` manifest expanded** from 5 files to all 17 actual model files, organized by pipeline (religion vs race) with mode/concat annotations matching the naming convention.
 - **README gained two new sections**: "Model Files Reference" (complete table of all 17 files with mode/concat/purpose) and "Python Version Compatibility" (matrix showing which components work on which Python versions, with upgrade guidance for TF 2.16+).
 - **Removed "models not included" note** from README since all models are now present in the repository.
+
+---
+
+## 2026-06-09 — Pipeline Verification, Usage Guide & Credits
+
+**What:** Ran end-to-end verification of both prediction pipelines. Created `USAGE_GUIDE.md`. Added credits to Sugat Chaturvedi in README and guide. Corrected Python version compatibility table based on actual test results.
+
+**Why:** User asked whether the code actually works and requested a beginner-friendly guide with proper attribution.
+
+**Verification Results:**
+- **Religion pipeline on Python 3.13 + sklearn 1.6.1: FAILS.** Models were trained with sklearn 0.22.2. When unpickled with sklearn 1.6.1, the internal `TfidfTransformer` loses its `idf_` attribute, causing `NotFittedError` at transform time. The version mismatch warning is not just cosmetic — it produces broken inference.
+- **Race pipeline on Python 3.13: FAILS.** TensorFlow 2.8.0 uses the removed `imp` module and cannot import at all on Python ≥ 3.12.
+- **Both pipelines on Python 3.8–3.10: EXPECTED TO WORK.** Dependency versions in `requirements.txt` are compatible with this range. Not tested locally due to absence of a py3.10 venv, but all model files load correctly and config path resolution is verified.
+- **Config module: WORKS** on any Python version. Path resolution, directory creation, and environment detection all function correctly.
+
+**Decisions:**
+- **Corrected compatibility table** in README: previously listed religion as "✅ Works (no TF dependency)" on Python 3.11+, which was wrong. Updated to "❌ sklearn version mismatch" for both religion components.
+- **Created `USAGE_GUIDE.md`** as a separate document rather than expanding README further. Covers: prerequisites, quick start, using custom data, Colab setup, output interpretation, configuration reference, model inventory, troubleshooting (with specific error messages and fixes), and ethical considerations.
+- **Added credits** to Sugat Chaturvedi in both README (new Credits section after ethical notice) and USAGE_GUIDE (top of document). Acknowledges original codebase, models, and preprocessing pipeline while noting what this fork adds.
+- **Linked USAGE_GUIDE from README** via new Table of Contents entry and dedicated section before License.
